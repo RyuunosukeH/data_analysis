@@ -42,7 +42,7 @@ else
     'indep', {'x', 'y'}, 'dep', 'z');
 end
 
-out = struct('fitresult',[],'gof',[],'fitinfo',[]);
+out = struct('fitresult',[],'gof',[],'fitinfo',[], 'fitval', [], 'w1', [], 'w3', []);
 for ii = 1:length(data)
     xx = data(ii).w1;
     yy = data(ii).w3;
@@ -54,7 +54,7 @@ for ii = 1:length(data)
     
     A = [-max(max(zz))];
     B = horzcat(A,startpoint);
-    [fitresult,gof,fitinfo] = fit([xxx,yyy],-zzz,fitfcn,... %%%%
+    [fitresult,gof,fitinfo] = fit([xxx,yyy],-zzz,fitfcn,... 
       'StartPoint', B, ...
       'upper',ub ,'lower',lb);
 
@@ -66,4 +66,12 @@ for ii = 1:length(data)
     out(ii).fitresult = fitresult;
     out(ii).gof = gof;
     out(ii).fitinfo = fitinfo;
+
+    % By adding the following, the out put of this function could be 
+    % pluged into cropData function and give the simulated result.
+
+    out(ii).w1 = data(ii).w1; 
+    out(ii).w3 = data(ii).w3; 
+    out(ii).R = -fitresult(XX,YY); % output the result
+    out(ii).t2 = data(ii).t2; % the t2 for each simulation
 end
