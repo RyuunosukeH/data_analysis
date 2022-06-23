@@ -81,8 +81,17 @@ if n_under>0 && strcmpi(shift,'on')
   warning('data_analysis:untested_feature','fftFreqAxis: use p.ind to find the right part of the spectrum');
 end
 
+if any(isempty([c_cm ]))
+  error('Physical constants c_cm is missing! Rerun startup.m or define them as global')
+end
+if any(isempty([ h  ]))
+  error('Physical constants h is missing! Rerun startup.m or define them as global')
+end
+if any(isempty([q ]))
+  error('Physical constants q is missing! Rerun startup.m or define them as global')
+end
 if any(isempty([c_cm h q ]))
-  error('Physical constants c h and q are missing! Rerun startup.m or define them as global')
+  error('Physical constants c_cm h and q are missing! Rerun startup.m or define them as global')
 end
 conversion = 1;
 switch lower(freq_units)
