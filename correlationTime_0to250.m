@@ -1,7 +1,7 @@
-function [tau_c,stde_tau_c] = correlationTime(cfit_obj)
+function [tau_c,stde_tau_c] = correlationTime_0to200(cfit_obj)
 %for MY code, it would be [tau_c,stde_tau_c]=correlationTime(CFFit(model#).fitresult)
 % calculate the correlation time
-tau_c = integrate(cfit_obj,Inf,0);
+tau_c = integrate(cfit_obj,250,0);
 
 % calculate the standard deviation of the correlation time
 
@@ -35,6 +35,3 @@ aMat = coeffMat(ind2,:);
 % Propagation of error from the best fit coefficients
 stde_tau_c = sqrt(sum(tMat(:,1).^2.*aMat(:,2).^2 + ...
     aMat(:,1).^2.*tMat(:,2).^2));
-
-
-%
