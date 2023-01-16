@@ -1,6 +1,7 @@
 function [tau_c,stde_tau_c] = correlationTime_0to250(cfit_obj)
 %for MY code, it would be [tau_c,stde_tau_c]=correlationTime(CFFit(model#).fitresult)
-% calculate the correlation time
+% calculate the correlation time, but instead of integrating from 0 to
+% infinity this code integrates the time from 0 to 250 ps. 
 tau_c = integrate(cfit_obj,250,0);
 
 % calculate the standard deviation of the correlation time
